@@ -1,0 +1,35 @@
+version: "3.7"
+services:
+  adventureland:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    network_mode: host
+    volumes:
+      - /alserver/:/alserver/
+
+    restart: always
+    ports:
+      - "80:80"
+      - "8081:8081"
+      - "8000:8000"
+    extra_hosts:
+      - "thegame.com:0.0.0.0"
+      - "www.thegame.com:0.0.0.0"
+    entrypoint: ["bash", "/adventureland/server_entrypoint.sh"]
+  us1:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    network_mode: host
+    volumes:
+      - /alserver/:/alserver/
+
+    ports:
+      - "8022:8022"
+    extra_hosts:
+      - "thegame.com:0.0.0.0"
+      - "www.thegame.com:0.0.0.0"
+    entrypoint: ["bash", "/adventureland/client_entrypoint.sh", "US", "I", "8022"]
+    depends_on:
+      - adventureland
