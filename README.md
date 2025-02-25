@@ -26,7 +26,13 @@ To run on Proxmox Docker/Portainer LXC (DRAFT):
    - You can run ` docker compose up ` to start the containers and the stack should also appear in portainer
 
 
-Once the containers are running you should be able to access your adventure.land by 
+Once the containers are running you should be able to access your adventure.land by opening a browser and going to ` http://yourdockerhostip `
+ For Proxmox Portainer LXC the IP address of the LXC host on your LAN (recommend creating an IP reservation or give the LXC a static IP).
+The adventure.land game should start and you should be able to click 'Sign up (development use)' to register your account.   Email verification is not required.
+Once you sign up the list of characters will appear and you can create a new character in a slot.
+
+TROUBLESHOOTING / FAQ : 
+ - if the game loads but the background map is not drawing, click in the URL bar and press F12 and look for console messages indicating the web socket connection is failing - usually its trying to connect to "0.0.0.0" in that case.   Currently that means the adventureland/js/game.js file needs to be modified where it sets 'server_addr="0.0.0.0"' by default (the docker script attempts to set this using sed and you may need to adjust the script and/or the .js file).
 
 FUTURE:
  How to become ADMIN
