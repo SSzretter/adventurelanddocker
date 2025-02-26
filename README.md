@@ -25,6 +25,16 @@ To run on Proxmox Docker/Portainer LXC (DRAFT):
    - ` cd adventurelanddocker `
    - You can run ` docker compose up ` to start the containers and the stack should also appear in portainer
 
+Docker Windows (DRAFT):
+ - Install docker desktop for Windows.
+ - Install github desktop (or similar) and close this repository to your machine
+ - Using a windows command prompt, cd into the cloned respository ` cd adventurelanddocker `
+ - type:  ` docker-compose build `
+ - When the build is complete, docker desktop should have two new images
+ - type: ` docker-compose up `
+ - Docker desktop should now show a container containing the two images
+ - NOT COMPLETE
+ 
 
 Once the containers are running you should be able to access your adventure.land by opening a browser and going to ` http://yourdockerhostip `
  For Proxmox Portainer LXC the IP address of the LXC host on your LAN (recommend creating an IP reservation or give the LXC a static IP).
@@ -33,6 +43,21 @@ Once you sign up the list of characters will appear and you can create a new cha
 
 TROUBLESHOOTING / FAQ : 
  - if the game loads but the background map is not drawing, click in the URL bar and press F12 and look for console messages indicating the web socket connection is failing - usually its trying to connect to "0.0.0.0" in that case.   Currently that means the adventureland/js/game.js file needs to be modified where it sets 'server_addr="0.0.0.0"' by default (the docker script attempts to set this using sed and you may need to adjust the script and/or the .js file).
+
+Editing Files using VSCode on a remote Linux or Docker:
+  ( good example video of similar use case : https://www.youtube.com/watch?v=51nvmT-6RFM )
+ - If running a Portainer or Docker host, you would need SSH installed and enabled on the host.  You will connect into the host using SSH to edit the AL files that are stored on the host and mapped into the containers.
+ - Install the "Remote SSH" extension in Visual Studio Code
+ - Click the Remote Explorer icon in VSCode
+ - Click the + button to add an SSH entry
+ - type ` ssh linuxusername@yourserversipaddress ` (try username of root if unsure)
+ - select store it in your ssh config
+ - Platform Linux
+ - If asked, accept the signature
+ - It should prompt for the password
+ - Once connected you should be able to click open folder and open the /alserver/ folder that contains all the source and other AL files (it may take a while to process and load)
+
+
 
 FUTURE:
  How to become ADMIN
