@@ -30,4 +30,3 @@ fi
 
 echo "Starting $1 $2 on port $3"
 exec node server.js $1 $2 $3
-
