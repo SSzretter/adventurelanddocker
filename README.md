@@ -55,20 +55,39 @@ Editing Files using VSCode on a remote Linux or Docker:
  - Platform Linux
  - If asked, accept the signature
  - It should prompt for the password
- - Once connected you should be able to click open folder and open the /alserver/ folder that contains all the source and other AL files (it may take a while to process and load)
+ - Once connected you should be able to click open folder and open the /alserver/ folder that contains all the source and other AL files (it may take a while to process and load) - keep an eye on the command palette/search box at the top for prompts
+
+Viewing / Editing SQLITE Database Files:
+ - Using VSCode
+  - Install a sqlite extension in VSCode such as "SQLite Viewer" - note that not all extensions are comptaible with SSH Explorer if you are using that
+  - The appserver/storage directory contains : logs.db
+
+How to becom ADMIN
+ - edit adventureland/admin.py , near the top find the line that checks user.info.email and replace the "your_email_here" with the email you use for your admin account
+ - go to : http://yourserveraddress/admin/make  , it should respond: "done!"
+ - go to : http://yourserveraddress/admin/executor
+
+Admin Executor Information
+ - ` game_analysis(logging); # gives you an analysis of all characters online, including their owner id `
+ - ` output=get_by_iid('user|owner_id')  # outputs the user of the owner, including the email `
+ - Remove Auth Debuff & Verification Debuff:
+  - ` domain=gdi(self); user=get_user(self,domain, "email@email.email"); user_data=get_user_data(user)
+      user.info.verified=True; # verifies the user, next login should remove the debuff
+      user.pid="some id" # removes auth failure for the web platform, this is normally the id from the mac or steam auth ticket
+      user.put(); `
 
 
+Other Information
 
-FUTURE:
- How to become ADMIN
- Useful ADMIN commands
+ - Lots of information and support in the official discord : https://discord.gg/URTHC5C8
+
+ - View a list of MAPS : http://yourserveraddress/maps
+ - Map Editor : http://yourserveraddress/editmap/test   ('test' is the map id from the list of maps)
 
  How to view data (gae , db files)
 
  settings files?
 
- Windows Docker (install docker, ...)
- Standard Linux VM's/machines/LXC  (install docker first)
 
  POSSIBLE FUTURE - cloudflared access
  
