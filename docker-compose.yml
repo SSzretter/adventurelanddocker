@@ -6,12 +6,10 @@ services:
     network_mode: host
     volumes:
       - /alserver/:/alserver/
-
     restart: always
     ports:
       - "80:80"
       - "8081:8081"
-      - "8000:8000"
     extra_hosts:
       - "thegame.com:0.0.0.0"
       - "www.thegame.com:0.0.0.0"
